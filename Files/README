@@ -1,0 +1,3 @@
+All files except the "high-LD-regions-hg19.txt" in this folder were downloaded from this link (http://www.well.ox.ac.uk/ggeu/NPqc/raw-GWA-data.tgz).
+
+The high LD regions in the "high-LD-regions.txt" file were based on genome build hg18. If your data are based on genome build hg19, please use the "high-LD-regions-hg19.txt" instead. 
