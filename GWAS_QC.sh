@@ -142,7 +142,7 @@ R --no-save <$file.relcheck.R
 
 cat $file.het.outliers.ind  $file.imiss.gt3percent.ind  $file.pca.outliers.ind $file.sexprobs.ind >$file.het.imiss.pca.sex.probs.ind
 grep -v -f $file.het.imiss.pca.sex.probs.ind -w $file.related.ind.info | awk 'BEGIN{OFS="\t"}{if(NR>1) print $1,$2}' >$file.relcheck.probs.ind
-cat $file.het.imiss.pca.sex.probs.ind $file.relcheck.probs.ind >$file.to.be.deleted.ind
+cat $file.het.imiss.pca.sex.probs.ind $file.relcheck.probs.ind | sort -u >$file.to.be.deleted.ind
 ndel=`wc -l $file.to.be.deleted.ind | awk '{print $1}'`
 echo
 echo "Done! $ndel individuals need to be excluded from your gwas data!"
