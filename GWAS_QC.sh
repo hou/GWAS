@@ -81,7 +81,7 @@ awk '$10>0.1' $file.genome >$file.related.ids
 nrel=`wc -l $file.related.ids | awk '{print $1}'`
 echo "Found $nrel pairs that have a PI_HAT > 0.1!"
 echo "Warning: If your data set includes individuals with different ethnicities, you might have to run the relationship checking for each ethnicity seperately!"
-
+echo
 echo "Generating the 'missing rate' vs. the 'heterozygosity rate' scatter plot ..."
 echo "imiss=read.table(\"$file.imiss\",h=T)" >$file.imiss.vs.het.R
 echo "imiss\$logF_MISS=log10(imiss[,6])" >>$file.imiss.vs.het.R
@@ -103,7 +103,7 @@ echo "abline(h=mean(het\$meanHet)+(3*sd(het\$meanHet)),col='RED',lty=2)" >>$file
 echo "abline(v=-1.522879, col='RED', lty=2)" >>$file.imiss.vs.het.R
 
 R --no-save <$file.imiss.vs.het.R
-
+echo
 echo "Generating the principal components scatter plots ..."
 echo "data=read.table(\"$file.hapmap3r2.pca.evec\",head=F,skip=1)" >$file.pca.plot.R
 echo "data\$color <- 'black'" >>$file.pca.plot.R
@@ -144,6 +144,7 @@ cat $file.het.outliers.ind  $file.imiss.gt3percent.ind  $file.pca.outliers.ind $
 grep -v -f $file.het.imiss.pca.sex.probs.ind -w $file.related.ind.info | awk 'BEGIN{OFS="\t"}{if(NR>1) print $1,$2}' >$file.relcheck.probs.ind
 cat $file.het.imiss.pca.sex.probs.ind $file.relcheck.probs.ind >$file.to.be.deleted.ind
 ndel=`wc -l $file.to.be.deleted.ind | awk '{print $1}'`
+echo
 echo "Done! $ndel individuals need to be excluded from your gwas data!"
 echo
 echo "Please use the following plink command to get the QCed data set:"
