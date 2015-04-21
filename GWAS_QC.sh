@@ -70,9 +70,11 @@ if [ -f $file.hapmap3r2.pruned.missnp ]; then
 fi
 
 echo "Working on the principal component analysis ..."
+echo
 echo "Please be patient, it might take quite a while to finish"
 smartpca.perl -i $file.hapmap3r2.pruned.bed -a $file.hapmap3r2.pruned.bim -b $file.hapmap3r2.pruned.fam -o $file.hapmap3r2.pca -p $file.hapmap3r2.plot -e $file.hapmap3r2.eval -l $file.hapmap3r2.pca.log -k 10 -t 10 -m 0
 
+echo
 echo "Working on the relationship checking ..."
 plink --bfile $file --extract $file.prune.in --exclude $file.nonAutosomes.snps --maf 0.05 --genome --out $file --noweb
 awk '$10>0.1' $file.genome >$file.related.ids
