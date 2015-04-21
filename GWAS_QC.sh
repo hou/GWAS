@@ -56,7 +56,7 @@ fi
 
 echo "Merging your GWAS data with the HapMap phase3 data set ..."
 awk '$1>22' $file.bim >$file.nonAutosomes.snps
-plink --bfile $file --extract $qc_folder/hapmap3r2_CEU.CHB.JPT.YRI.no-at-cg-snps.txt --make-bed --out $file.hapmap-snps --noweb
+plink --bfile $file --extract $qc_folder/hapmap3r2_CEU.CHB.JPT.YRI.founders.no-at-cg-snps.bim --make-bed --out $file.hapmap-snps --noweb
 plink --bfile $qc_folder/hapmap3r2_CEU.CHB.JPT.YRI.founders.no-at-cg-snps --bmerge $file.hapmap-snps.bed $file.hapmap-snps.bim $file.hapmap-snps.fam --extract $file.prune.in --exclude $file.nonAutosomes.snps --make-bed --out $file.hapmap3r2.pruned --noweb
 if [ -f $file.hapmap3r2.pruned.missnp ]; then
     plink --bfile $file.hapmap-snps --flip $file.hapmap3r2.pruned.missnp --make-bed --out $file.hapmap-snps-flipped --noweb
