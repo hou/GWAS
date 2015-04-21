@@ -148,5 +148,5 @@ echo
 echo "Done! $ndel individuals need to be excluded from your gwas data!"
 echo
 echo "Please use the following plink command to get the QCed data set:"
-echo "plink --bfile $file --exclude $file.to.be.deleted.ind --geno 0.02 --maf 0.01 --hwe 0.000001 --make-bed --out ${file}_QCed --noweb"
+echo "plink --bfile $file --remove $file.to.be.deleted.ind --geno 0.02 --maf 0.01 --hwe 0.000001 --make-bed --out ${file}_QCed --noweb"
 
