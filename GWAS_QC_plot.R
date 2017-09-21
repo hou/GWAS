@@ -1,6 +1,6 @@
 args <- commandArgs(trailingOnly=TRUE)
 if(length(args)!=1){
-    stop("Usage: Rscript GWAS_QC_plot.R <root name of the GWAS files>")
+    stop("Usage: Rscript GWAS_QC_plot.R [root name of the GWAS files]")
 }else{
     options(echo=TRUE)
 }
