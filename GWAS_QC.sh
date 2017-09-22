@@ -73,3 +73,5 @@ Rscript ~/bin/GWAS_QC_plot.R $file
 cat $file.het.outliers.ind  $file.imiss.gt3percent.ind  $file.pca.outliers.ind $file.sexprobs.ind >het.imiss.pca.sex.probs.ind
 grep -v -f het.imiss.pca.sex.probs.ind -w $file.related.ind.info | awk 'BEGIN{OFS="\t"}{if(NR>1) print $1,$2}' >relcheck.probs.ind
 cat het.imiss.pca.sex.probs.ind relcheck.probs.ind >to.be.deleted.ind
+
+#plink --bfile $file --remove to.be.deleted.ind --maf 0.01 --geno 0.05 --hwe 0.0001 --make-bed --out $file.QCed
